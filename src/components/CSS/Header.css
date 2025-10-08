@@ -1,0 +1,46 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0 1.5rem 0;
+  background-color: var(--primary-color);
+  border-bottom: 1px solid rgb(226, 226, 226);
+  height: var(--nav-height);
+}
+
+.navbar-logo {
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  padding: 2rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar-left {
+  display: flex;
+  gap: 5px;
+  color: white;
+  margin-right: 2rem;
+}
+
+.navbar-left li {
+
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--letter-color);
+  font-size: 1.5rem;
+  transition: all 1s;
+}
+
+.navbar-left li:hover {
+  background-color: var(--secondary-color);
+  
+  color: blue;
+  scale:1.1;
+}
