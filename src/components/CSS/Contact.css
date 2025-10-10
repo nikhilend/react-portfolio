@@ -1,0 +1,131 @@
+.contact-background-image{
+    background-image: url('../../images/montain-background.jpg');
+    width: 100%;
+    background-size:cover ;
+    background-repeat: no-repeat;
+}
+.contact-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 72rem;
+}
+.contact-box > h2{
+    margin-bottom: 5rem;
+}
+.contact-division {
+    display: flex;
+    width: 100%;
+
+}
+
+.contact-form-container {
+    flex-basis: 50%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-form{
+    background-color: white;
+    width: 50rem;
+    border-radius: 5px;
+}
+.contact-form:focus-within {
+    border: 1px solid #CFD3D6;
+}
+
+.contact-form-name,
+.contact-form-email,
+.contact-form-message,
+.contact-form-button{
+    display: flex;
+    padding: 2rem 0;
+    border-bottom: 1px solid #CFD3D6;
+    align-items: center;
+    justify-content: center;
+    gap:2rem;
+}
+
+.contact-form-name h4,
+.contact-form-email h4,
+.contact-form-message h4{
+    padding: 3rem 6rem;
+    border: 1px solid #CFD3D6;
+    border-radius: 5px;
+    margin-left: 0.8rem;
+}
+
+.contact-form-name i,
+.contact-form-email i{
+    font-size: 2.5rem;
+}
+
+.contact-form-name input, 
+.contact-form-email input{
+    border: none;
+    width: 100%;
+    padding: 3rem;
+}
+
+.contact-form-message textarea {
+    border: none;
+    width: 100%;
+    height: 20rem;
+    padding: 3rem;
+}
+.contact-form-message textarea:focus,
+.contact-form-name input:focus, 
+.contact-form-email input:focus{
+    outline: none;
+
+}
+
+.contact-view {
+    flex-basis: 50%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-view-page {
+    background-color: white;
+    width: 50rem;
+    height: 56rem;
+    border-radius: 5px;
+
+}
+
+.contact-view-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.contact-view-from {
+    flex-basis: 7%;
+    padding: 1rem;
+    height: 3.5rem;
+    border-bottom: 1px solid #CFD3D6;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    
+}
+
+.contact-view-from p{
+    font-size: 1.1rem;
+}
+
+.contact-view-message,.contact-view-regards {
+    padding: 4rem 2rem;
+}
+
+.contact-page-from-label {
+    display: inline;
+    border-right: 1px solid #CFD3D6;
+    padding: 0.5rem;
+}

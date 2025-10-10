@@ -19,7 +19,7 @@ const Hero = () => {
                 contact me
               </li>
               <li className='btn btn-secondary'>
-                <i class="bi bi-download"></i>   my resume
+                <i className="bi bi-download"></i>   my resume
               </li>
             </ul>
         </div>

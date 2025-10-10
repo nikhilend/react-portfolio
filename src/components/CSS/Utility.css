@@ -9,6 +9,7 @@
     width: 15rem;
     background-color: var(--grey);
     border-radius: 1rem;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -43,4 +44,12 @@ p{
     text-align: left;
     line-height: 1.5;
     letter-spacing: -1px;
+}
+
+h2{
+    font-size: 6rem;
+}
+
+h3{
+    font-size: 1.5rem;
 }
