@@ -14,17 +14,17 @@ const About = () => {
                 <p>I'm a passionate and detail-oriented software developer with 3 years of hands-on experience in building scalable, user-centric applications. My work spans across the full development lifecycle—from planning and design to implementation, testing, and maintenance.</p>
                 <div className='skill-cards'>
                     <div className='skill-card'>
-                        <i class="bi bi-code-slash"></i> <br/>
+                        <i className="bi bi-code-slash"></i> <br/>
                         <h4>Frontend</h4>
                         <p>HTML, CSS, Javascript, React.js</p>
                     </div>
                     <div className='skill-card'>
-                        <i class="bi bi-code-slash"></i> <br/>
+                        <i className="bi bi-code-slash"></i> <br/>
                         <h4>Backend</h4>
                         <p>.Net, Java, Springboot, Node.js</p>
                     </div>
                     <div className='skill-card'>
-                        <i class="bi bi-backpack4"></i><br/>
+                        <i className="bi bi-backpack4"></i><br/>
                         <h4>Education</h4>
                         <p>B.E in Information Technology</p>
                     </div>
