@@ -35,4 +35,13 @@ a{
     --blue-dark :#3367D1;
     --light-green: #D5F8EF;
      --light-blue: #D8F6FF;
+     --bright-blue: #5DCDF1;
+     --yellow-bright: #F9F6F2;
+}
+
+@media (max-width: 1000px) {
+    html{
+    font-size: 50%;
+}
+
 }
