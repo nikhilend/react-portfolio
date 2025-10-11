@@ -1,4 +1,3 @@
-import React from 'react'
 import './CSS/Utility.css'
 import './CSS/Hero.css'
 

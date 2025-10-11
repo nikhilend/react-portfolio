@@ -7,6 +7,8 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const[message, setMessage] = useState("");
 
+  let test = ""
+
   return (
     <div className='contact-background-image'>
         <div className='container'>
@@ -36,7 +38,7 @@ const Contact = () => {
                     <div className='contact-view'>
                          <div className='contact-view-page'>
                             <div className='contact-view-from'>
-                                <p class='contact-page-from-label'>from </p>
+                                <p className='contact-page-from-label'>from </p>
                                 <p>{email}</p>
                             </div>
                             {(message!="") ? <div className='contact-view-message'>
@@ -55,9 +57,8 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                
-            
             </div>
+            <input onChange={(e)=> {test = e.target.value}}></input> <button onClick={()=> {console.log("button", test)}}>Test</button>
     </div> 
     </div>
   )
