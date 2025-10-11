@@ -7,69 +7,84 @@
 
 .about {
     display: flex;
-    height: 60rem;
+    gap: 5rem;
+    height: 150rem;
 }
 
 .about-image{
-    flex-basis: 35%;
+    flex-basis: 50%;
     flex-grow: 0;
     display: flex;
-    align-items: end;
-    justify-content: center;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: stretch;
+    justify-content: start;
     margin-left: 4rem;
 
 }
 
+.image-card {
+    overflow: hidden;
+    background-color: var(--yellow-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
-.about-image img{
-    width: 30rem;
-    border-radius: 2rem;
+.image-card img{
+    width: 40rem;
+
+    
 }
 
 .about-content{
-    flex-basis: 65%;
-}
-
-.skill-cards {
-
+    flex-basis: 50%;
     display: flex;
-    gap:2rem;
-    margin-top: 6rem;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: start;
+    gap: 5rem;
 }
 
 .skill-card {
-
-    border: 1px solid rgb(194, 194, 194);
-    width: 20rem;
-    height: 20rem;
+    background-color: #F9F6F2;
     border-radius: 2rem;
-    padding: 1rem 1rem;
-    transition: all 0.5s;
+    min-height: 50rem;
+    padding: 10rem 5rem;
+    transition: all 100ms;
 }
 
 .skill-card p{
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-top: 2rem;
+    font-weight: 600;
 }
 
 .skill-card h4{
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 4rem;
+    font-weight: 1000;
     margin-top: 2rem;
 
 }
 .skill-card i{
     margin-top: 2rem;
-    font-size: 3rem;
+    font-size: 5rem;
 }
 
-.skill-card:hover {
+.skill-card:hover,.image-card:hover {
     scale: 1.05;
     transform: rotate(-1deg);
-    background-color: var(--light-blue);
+    background-color: var(--bright-blue);
     box-shadow: 1px 1px 5px var(--letter-color);
+}
+
+.tools-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F7FC;
+    margin-top: 20rem;
 }
 
 .tools-heading {
@@ -79,17 +94,18 @@
 .about-tools {
     display: flex;
     gap:2rem;
-    margin-top: 4rem;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
 }
 
 .about-tools .about-tool{
-    width: 5rem;
-    height: 5rem;
-    border-radius: 15px;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(194, 194, 194);
+    background-color: white;
     transition: 1s;
 }
 

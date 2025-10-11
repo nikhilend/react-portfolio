@@ -14,22 +14,23 @@
 }
 
 .btn-primary{
-    color : white;
-    background-color: #007BFF;
-    border: 1px solid #007BFF;
-    transition: all 1s;
+    color : var(--letter-color);
+    background-color: var(--yellow-bright);
+    border: 1px solid var(--yellow-bright);
+    transition: all 200ms;
 }
 
 .btn-primary:hover{
-    background-color: #055ebd;
-    scale: 1.1;
+    background-color: var(--bright-blue);
+    scale: 1.04;
+    transform: rotate(2deg);
 }
 
 .btn-secondary{
     color : var(var(--letter-color));
     background-color: white;
-    border: 1px solid #007BFF;
-    transition: all 1s;
+    border: 1px solid var(--bright-blue);
+    transition: all 200ms;
     
 }
 
