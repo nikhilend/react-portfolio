@@ -9,11 +9,15 @@ body{
     /* background: linear-gradient(180deg, #e7e7f1 .62%, rgba(231, 231, 241, 0) 95.76%); */
     color: #333;
     font-family: "Poppins", Times, serif;
+    max-width: 100%;
+    overflow-x: hidden;
 
 }
 
 html{
     font-size: 62.5%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 ul{

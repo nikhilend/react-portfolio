@@ -1,9 +1,10 @@
 .projects {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     height: 74rem;
+    background-color: #F4F7FC;
 }
 
 .project-name,.project-description{
@@ -11,6 +12,7 @@
     width: 80rem;
     gap: 1rem;
     align-items:center ;
+    justify-content: center;
 }
 
 .project-carousal{
@@ -90,4 +92,30 @@
 
 .coursal-dots i:hover {
     transform: scale(1.1);
+}
+
+
+ /* MDIA QUERIES */
+
+ @media (max-width: 1000px) {
+}
+
+@media ( max-width: 801px) {
+    .project-carousal{
+        width: 62rem;
+        height:35rem;
+    }
+    .contact-view{
+        display: none;
+    }
+}
+
+@media ( max-width: 500px) {
+    .project-carousal{
+        width: 45rem;
+        height:25rem;
+    }
+    .contact-view{
+        display: none;
+    }
 }

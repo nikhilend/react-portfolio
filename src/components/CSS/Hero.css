@@ -81,10 +81,6 @@
  /* MDIA QUERIES */
 
  @media (max-width: 1000px) {
-    html{
-    font-size: 50%;
-}
-
 }
 
 @media ( max-width: 500px) {

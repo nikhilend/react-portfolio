@@ -83,38 +83,39 @@ const Project = () => {
   
   return (
     <div className='container'>
-    <div className='projects'>
-        <h2>Projects</h2>
-        <div>
-            <div className='project-name'>
-            <h3>Name : </h3><p>{nameShow}</p>
+    <div></div>
+        <div className='projects'>
+            <h2>Projects</h2>
+            <div>
+                <div className='project-name'>
+                <h3>Name : </h3><p>{nameShow}</p>
+                </div>
+                <div className='project-description'>
+                    <h3>Description : </h3><p>{descShow}</p>  
+                </div>
             </div>
-            <div className='project-description'>
-                <h3>Description : </h3><p>{descShow}</p>  
-            </div>
-        </div>
-        
-        
-        <div className='project-carousal'>
-        <div className='project-carousal-images'>
-           {projectInfo.map((p) => {
-            return(
-                <img key={p.id} className='project-card' src={p.src} alt={p.alt} style={{translate : `${-100 * slideInd}%`}}></img>
-            )
-        })} 
-        </div>
             
-        <a className='corousal-left' onClick={clickLeft}><i className="bi bi-arrow-left"></i></a> 
-        <a className='corousal-right' onClick={clickRight}><i className="bi bi-arrow-right"></i></a>
-        <div className='coursal-dots'>
-            {projectInfo.map((_,ind) => {
-                if(ind === slideInd)
-                return(<i className="bi bi-record-circle" key={ind} ></i>)
-                else return (<i className="bi bi-circle" key={ind} onClick={() => clickDot(ind)}></i>)
-            })}
-        </div>
-        </div>
-            <a className='btn btn-primary'>View</a>
+            
+            <div className='project-carousal'>
+                <div className='project-carousal-images'>
+                {projectInfo.map((p) => {
+                    return(
+                        <img key={p.id} className='project-card' src={p.src} alt={p.alt} style={{translate : `${-100 * slideInd}%`}}></img>
+                    )
+                })} 
+                </div>
+                
+                <a className='corousal-left' onClick={clickLeft}><i className="bi bi-arrow-left"></i></a> 
+                <a className='corousal-right' onClick={clickRight}><i className="bi bi-arrow-right"></i></a>
+                <div className='coursal-dots'>
+                    {projectInfo.map((_,ind) => {
+                        if(ind === slideInd)
+                        return(<i className="bi bi-record-circle" key={ind} ></i>)
+                        else return (<i className="bi bi-circle" key={ind} onClick={() => clickDot(ind)}></i>)
+                    })}
+                </div>
+            </div>
+                <a className='btn btn-primary'>View</a>
         </div>
         
     </div>

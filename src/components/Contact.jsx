@@ -42,7 +42,7 @@ const Contact = () => {
                                 <p>{email}</p>
                             </div>
                             {(message!="") ? <div className='contact-view-message'>
-                                <p>Hi Nikhil,</p> 
+                                {/* <p>Hi Nikhil,</p>  */}
                                 <p>{message}</p>
                             </div> : <div></div>}
                             

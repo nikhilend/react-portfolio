@@ -12,12 +12,11 @@
     height: 96rem;
 }
 .contact-box > h2{
-    margin-bottom: 5rem;
+    margin-bottom: 10rem;
 }
 .contact-division {
     display: flex;
     width: 100%;
-
 }
 
 .contact-form-container {
@@ -30,7 +29,7 @@
 
 .contact-form{
     background-color: white;
-    width: 50rem;
+    max-width: 50rem;
     border-radius: 5px;
 }
 .contact-form:focus-within {
@@ -86,23 +85,20 @@
 .contact-view {
     flex-basis: 50%;
     width: 50%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.contact-view-page {
-    background-color: white;
-    width: 50rem;
-    height: 56rem;
-    border-radius: 5px;
-
 }
 
 .contact-view-page{
     display: flex;
     flex-direction: column;
     justify-content: start;
+    background-color: white;
+    border-radius: 5px;
+    width: 80%;
+    height: 100%;
 }
 
 .contact-view-from {
@@ -128,4 +124,37 @@
     display: inline;
     border-right: 1px solid #CFD3D6;
     padding: 0.5rem;
+}
+
+ /* MDIA QUERIES */
+
+ @media (max-width: 801px) {
+}
+
+@media (max-width: 801px), ( max-width: 500px) {
+    .contact-division {
+        display: block;
+        
+    }
+    .contact-form{
+        background-color: white;
+        border-radius: 5px;
+        width: 100%;
+    }
+    .contact-form-container{
+       width: 100%;
+    }
+    .contact-view-page,.contact-view{
+        display: none;
+    }
+    .contact-form-name h4,
+    .contact-form-email h4,
+    .contact-form-message h4{
+        display: none;
+    }
+    .contact-form-name i,
+    .contact-form-email ,
+    .contact-form-message i{
+        padding: 3rem;
+    }
 }
