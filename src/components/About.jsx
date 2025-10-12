@@ -21,7 +21,7 @@ const About = () => {
   return (
     <div>
     <div className='container'>
-        <div className='about'>
+        <div className='about' id="#About">
             <div className='about-grid'>
                 <h1 className='about-heading grid-1'>About Me</h1>
                 <div className='image-card grid-2'>
