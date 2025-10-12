@@ -31,7 +31,7 @@ a{
 
 :root{
     --nav-height: 6.4rem;
-    --secondary-color : #ffffff;
+    --secondary-color : #F4F7FC;
     --primary-color : #FFFFFF;
     --letter-color: #012A4A;
     --border-color : rgb(224, 224, 255);
@@ -40,7 +40,15 @@ a{
     --light-green: #D5F8EF;
      --light-blue: #D8F6FF;
      --bright-blue: #5DCDF1;
-     --yellow-bright: #F9F6F2;
+     --yellow-bright: white;
+      /* #F9F6F2; */
+
+      /* Project Colors */
+      --darkest-blue : #0D1B2A;
+      --darker-blue : #1B263B;
+      --grey-blue: #415A77;
+      --faint-blue: #778DA9;
+      --white-blue: #E0E1DD;
 }
 
 @media (max-width: 1000px) {
