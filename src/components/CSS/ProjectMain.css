@@ -1,0 +1,53 @@
+.sliding-curve{
+    display: flex;
+    width: 200vw;
+    height: 768px;
+    animation: slidein 3s ease-in-out forwards;
+}
+@keyframes slidein {
+    from{
+
+    }
+    to{
+        transform: translateX(-100vw);
+    }
+    
+}
+.main-intial-show{
+    width: 100vw;
+    height: 768px;
+    position: relative;
+    background-color: var(--darker-blue);
+}
+
+.sliding-curve-show {
+    background-color: var(--darkest-blue);
+}
+
+/* .sliding-curve-show::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 60%;
+    border-top-left-radius: 20% 50%;
+    border-bottom-left-radius: 20% 50%;
+    background-color: #0D1B2A;
+} */
+
+.absolute-container {
+    position: absolute;
+    min-width: 120rem;
+    left: auto;
+    right: auto;
+}
+
+.project-menu{
+    position: relative;
+    display: flex;
+    justify-content: end;
+    font-size: 1.5rem;
+    color: white;
+    gap: 2rem;
+}
+

@@ -1,18 +1,29 @@
+.project-baground{
+    background-color: #F4F7FC;
+}
 .projects {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 74rem;
-    background-color: #F4F7FC;
+    
+}
+
+.project-main-box{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--yellow-bright);
+
 }
 
 .project-name,.project-description{
     display: flex;
-    width: 80rem;
-    gap: 1rem;
-    align-items:center ;
+    padding: 2rem 0;
+    border-bottom: 1px solid #CFD3D6;
+    align-items: center;
     justify-content: center;
+    gap:2rem;
 }
 
 .project-carousal{
@@ -21,7 +32,6 @@
     height: 40rem;
     margin: 5rem 0;
     background-color: var(--grey);
-    position: relative;
     transition: all 1s;
 }
 
@@ -33,8 +43,6 @@
     display: flex;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px black;
     overflow: hidden;
 }
 .project-carousal-images img{
@@ -47,31 +55,22 @@
     height: 100%;
 }
 
-.project-carousal > a{
-    position: absolute;
-    display: block;
-    padding: 0.5rem 1rem;
-    font-size: 2rem;
-    border-radius: 50%;
-    background-color: black;
-    color: white;
-    transition: scale 100ms;
+.c-button{
+    background-color: var(--yellow-bright);
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    font-size: 2.5rem;
+    transition: 500ms ease-in-out;
+
 }
 
-.project-carousal > a:hover{
-    transform: scale(1.2);
-}
-
-.corousal-left {   
-    bottom:50%;
-    left: -2%;
-    
-}
-
-.corousal-right {  
-    bottom:50%;
-    right: -2%;
+.c-button:hover{
+    font-size: 5rem;
+    border: 1px solid #CFD3D6;
 }
 
 .coursal-dots {

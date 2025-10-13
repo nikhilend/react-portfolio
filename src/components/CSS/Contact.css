@@ -1,5 +1,6 @@
 .contact-background-image{
-    background-image: url('../../images/montain-background.jpg');
+    /* background-image: url('../../images/montain-background.jpg'); */
+    background-color: #F7F9FA;
     width: 100%;
     background-size:cover ;
     background-repeat: no-repeat;
@@ -7,12 +8,12 @@
 .contact-box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 96rem;
 }
 .contact-box > h2{
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
 }
 .contact-division {
     display: flex;

@@ -1,7 +1,11 @@
 import './CSS/Utility.css'
 import './CSS/Header.css'
+import { useContext } from 'react';
+import {EditContext} from '../Utils/UserContext'
 
 const Header = () => {
+
+  const [viewEditTool, setViewEditTool] = useContext(EditContext);
 
   function scroll(to) {
     switch(to) {
@@ -34,6 +38,7 @@ const Header = () => {
 
               <div>
                 <ul className='navbar-left'>
+                  <li onClick={() => setViewEditTool(!viewEditTool)}>EDIT</li>
                   <li onClick={() => scroll("About")}>ABOUT</li>
                   <li onClick={() => scroll("Project")}>PROJECTS</li>
                   <li onClick={() => scroll("Contact")}>CONTACT</li> 

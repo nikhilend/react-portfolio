@@ -5,10 +5,12 @@ import About from './About'
 import Project from './Project'
 import Contact from './Contact'
 import Footer from './Footer'
+import Header from './Header'
 
 const MainContent = () => {
   return (
     <main>
+      <Header/>
       <Hero/>   
       <div className='container space'></div>
       <About/>
