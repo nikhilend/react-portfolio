@@ -13,11 +13,11 @@ const Contact = () => {
     <div className='contact-background-image'>
         <div className='container'>
             <div className='contact-box'>
-                <h2>Contact Me</h2>
-                <div className='contact-division'>
+                <h2 id="#Contact">Contact Me</h2>
+                <div className='contact-division' >
                     <div className='contact-form-container'>
                     
-                        <form className='contact-form'>
+                        <form className='contact-form' >
                             <div className='contact-form-name'>
                                 <h4>Name</h4> <i className="bi bi-person-fill"></i><input placeholder='Name' value={name} onChange={(e) => {setName(e.target.value)}}></input>
                             </div>
@@ -58,7 +58,6 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <input onChange={(e)=> {test = e.target.value}}></input> <button onClick={()=> {console.log("button", test)}}>Test</button>
     </div> 
     </div>
   )

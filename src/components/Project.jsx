@@ -82,7 +82,7 @@ const Project = () => {
     }
   
   return (
-    <div className='container'>
+    <div className='container' id="#Project">
     <div></div>
         <div className='projects'>
             <h2>Projects</h2>
