@@ -1,5 +1,5 @@
-{
-"project1": {
+[
+ {
     
    "mainPage" : {
     "projectName": "Dot Net Project",
@@ -27,4 +27,4 @@
     }
 }
 
-}
+]

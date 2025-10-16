@@ -39,6 +39,18 @@
     scale: 1.1;
 }
 
+.btn-project-dark{
+    background-color: var(--darkest-blue);
+    box-shadow: -14px 15px 27px 0px var(--darkest-blue);
+    color: var(--white-blue);
+    transition: 200ms ease-in-out;
+}
+
+.btn-project-dark:hover{
+    box-shadow: -14px 15px 0px 0px var(--darkest-blue);
+}
+
+
 p{
     color: var(--letter-color);
     font-size: 2rem;

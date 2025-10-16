@@ -21,33 +21,64 @@
 }
 
 .sliding-curve-show {
-    background-color: var(--darkest-blue);
-}
-
-/* .sliding-curve-show::before {
-    content: '';
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 60%;
-    border-top-left-radius: 20% 50%;
-    border-bottom-left-radius: 20% 50%;
-    background-color: #0D1B2A;
-} */
-
-.absolute-container {
-    position: absolute;
-    min-width: 120rem;
-    left: auto;
-    right: auto;
-}
+    width: 100vw;
+    height: 768px;
+    background-image: url("../../images/masking-project.png");
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+}   
 
 .project-menu{
-    position: relative;
     display: flex;
     justify-content: end;
-    font-size: 1.5rem;
-    color: white;
-    gap: 2rem;
+    gap: 3rem;
+    margin: 3rem;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--white-blue);
 }
 
+.project-menu li{
+    cursor: pointer;
+}
+
+.project-content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10rem;
+    
+}
+.project-content-heading {
+    color: var(--white-blue);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 2.5rem;
+}
+
+.project-content-description{
+    color: var(--white-blue);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 5rem;
+    width: 70%;
+}
+
+.project-content img{
+    width: 45rem;
+    height: 36rem;
+}
+
+.appear{
+    opacity: 0;
+    animation: appear 1s ease-in-out 3s  forwards;
+}
+
+@keyframes appear {
+    from{}
+    to{ opacity: 1;}   
+}
+
+.prject-titles{
+    display: flex;
+    flex-direction: column;
+}

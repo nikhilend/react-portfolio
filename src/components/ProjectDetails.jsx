@@ -4,13 +4,16 @@ import './CSS/ProjectDetails.css'
 import { useContext } from 'react';
 import {EditContext} from '../Utils/UserContext'
 import ProjectMain from './ProjectMain';
+import ProjectData from "../Data/Projects.json"
 
 const ProjectDetails = () => {
+let projectID = 0
 const myRef = useRef(null);
 const dragBar = useRef(null);
 const myContainer = useRef(null);
 const isClicked = useRef(false);
 const [viewEditTool, setViewEditTool] = useContext(EditContext);
+const [projectData, setProjectData] = useState(null);
 
 const cords = useRef({
     x: 0,
@@ -19,8 +22,10 @@ const cords = useRef({
     lastY: 0
 })
 
-
 useEffect(() => {
+
+  // Logic for fetching the data
+  setProjectData(ProjectData);
 
    const div = myRef.current;
    const container = myContainer.current;
@@ -64,7 +69,7 @@ useEffect(() => {
         })
 
 },[])
-
+ if(ProjectData) return (<div>Loading</div>)
   return (
     <div ref={myContainer} className='background'>
         <div ref={myRef} className='editing-tool-box' style={viewEditTool? {display: "block"} : {display: "none"}}>
@@ -75,7 +80,7 @@ useEffect(() => {
 
             </div>
         </div>
-        <ProjectMain/>
+        <ProjectMain mainTitles={{projectData ,setProjectData}}/>
     </div>
     
   )
