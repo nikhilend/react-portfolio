@@ -66,3 +66,34 @@ h2{
 h3{
     font-size: 1.5rem;
 }
+
+.project-content-heading {
+    color: var(--white-blue);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 2.5rem;
+}
+
+.project-content-description{
+    color: var(--white-blue);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 5rem;
+    width: 60%;
+}
+
+.background-project{
+    background-color: var(--darkest-blue);
+}
+
+.make-invisible{
+    display: none;
+}
+
+.heighlight{
+    border: 2px solid red;
+}
+
+.gap{
+    height: 9rem;
+}
