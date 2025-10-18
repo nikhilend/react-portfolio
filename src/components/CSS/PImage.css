@@ -1,0 +1,24 @@
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-card{
+    width: 100%;
+    height: 60rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--darker-blue);
+    border-radius: 2.5rem;
+}
+
+.image-card img {
+    width: 800px;
+    height: 500px;
+}
+
+.image-card input {
+    width: 78rem;
+    margin-bottom: 2rem;
+}

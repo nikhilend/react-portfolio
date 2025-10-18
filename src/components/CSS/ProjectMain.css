@@ -1,7 +1,7 @@
 .sliding-curve{
     display: flex;
     width: 200vw;
-    height: 768px;
+    height: 100vh;
     animation: slidein 3s ease-in-out forwards;
 }
 @keyframes slidein {
@@ -25,7 +25,7 @@
     height: 768px;
     background-image: url("../../images/masking-project.png");
     background-repeat: no-repeat;
-    background-size: 50% 100%;
+    background-size: 50% 100vh;
 }   
 
 .project-menu{
@@ -48,19 +48,13 @@
     margin-top: 10rem;
     
 }
-.project-content-heading {
-    color: var(--white-blue);
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 2.5rem;
-}
 
 .project-content-description{
     color: var(--white-blue);
     font-size: 1.3rem;
     letter-spacing: 2px;
     margin-bottom: 5rem;
-    width: 70%;
+    width: 60%;
 }
 
 .project-content img{

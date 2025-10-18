@@ -4,16 +4,31 @@ import './CSS/ProjectDetails.css'
 import { useContext } from 'react';
 import {EditContext} from '../Utils/UserContext'
 import ProjectMain from './ProjectMain';
-import ProjectData from "../Data/Projects.json"
+import PExplanation from './PExplanation';
+import PImage from './PImage';
+import PDifference from './PDifference';
 
 const ProjectDetails = () => {
 let projectID = 0
-const myRef = useRef(null);
-const dragBar = useRef(null);
-const myContainer = useRef(null);
-const isClicked = useRef(false);
+const [isFetched, setIsFetched] = useState(false)
+// const myRef = useRef(null);
+// const dragBar = useRef(null);
+// const myContainer = useRef(null);
+// const isClicked = useRef(false);
 const [viewEditTool, setViewEditTool] = useContext(EditContext);
-const [projectData, setProjectData] = useState(null);
+const [projectData, setProjectData] = useState([]);
+const [viewInsertmenu, setViewInsertMenu] = useState(false);
+const [inFocusElement, setInFocusElement]  = useState(-1);
+
+
+useEffect(()=> {
+    // Logic for fetching the data
+    if(!isFetched) {
+            fetch("../../Data/Projects.json").then(res => res.json()).then(data => setProjectData(data)).catch(
+            err => console.error("Error loading projects:", err)
+        );
+    }
+},[])
 
 const cords = useRef({
     x: 0,
@@ -22,65 +37,126 @@ const cords = useRef({
     lastY: 0
 })
 
-useEffect(() => {
+// useEffect(() => {
+//    const div = myRef.current;
+//    const container = myContainer.current;
+//    const dragableBar = dragBar.current;
 
-  // Logic for fetching the data
-  setProjectData(ProjectData);
+//    const onMouseDown = (e) => {
+//         debugger
+//         isClicked.current = true;
+//         cords.current.x = e.clientX;
+//         cords.current.y = e.clientY;
+//    }
+//    const onMouseUp = (e) => {
+//         isClicked.current = false;
+//         cords.current.lastX = div.offsetLeft;
+//         cords.current.lastY = div.offsetTop;
+//    }
+//    const onMouseMove = (e) => {
+//             console.log("mousemove",true)
+//     if(isClicked.current){
 
-   const div = myRef.current;
-   const container = myContainer.current;
-   const dragableBar = dragBar.current;
+//         let nextX = e.clientX - cords.current.x + cords.current.lastX;
+//         let nextY = e.clientY - cords.current.y + cords.current.lastY;
+//         div.style.top = `${nextY}px`
+//         div.style.left = `${nextX}px`
+//     }
+//    }
+//     if (div) 
+//     {
+//         dragableBar.addEventListener('mousedown', onMouseDown);
+//         dragableBar.addEventListener('mouseup', onMouseUp);
+//         container.addEventListener('mousemove', onMouseMove)
+//         dragableBar.addEventListener('onmouseleave', onMouseUp);
+//     }
 
-   const onMouseDown = (e) => {
-        isClicked.current = true;
-        cords.current.x = e.clientX;
-        cords.current.y = e.clientY;
-   }
-   const onMouseUp = (e) => {
-        isClicked.current = false;
-        cords.current.lastX = div.offsetLeft;
-        cords.current.lastY = div.offsetTop;
-   }
-   const onMouseMove = (e) => {
-    if(isClicked.current){
+//     return (() => {onMouseDown
+//         if (div) {
+//                 dragableBar.removeEventListener('mousedown', onMouseDown);
+//                 dragableBar.removeEventListener('mouseup', onMouseUp);
+//                 container.removeEventListener('mousemove', onMouseMove)
+//                 dragableBar.removeEventListener('onmouseleave', onMouseUp);
+//             }
+//         })
 
-        let nextX = e.clientX - cords.current.x + cords.current.lastX;
-        let nextY = e.clientY - cords.current.y + cords.current.lastY;
-        console.log(nextX, nextY)
-        div.style.top = `${nextY}px`
-        div.style.left = `${nextX}px`
-    }
-   }
-    if (div) 
-    {
-        dragableBar.addEventListener('mousedown', onMouseDown);
-        dragableBar.addEventListener('mouseup', onMouseUp);
-        container.addEventListener('mousemove', onMouseMove)
-        container.addEventListener('onmouseleave', onMouseUp);
-    }
+// },[])
 
-    return (() => {onMouseDown
-        if (div) {
-                div.removeEventListener('mousedown', onMouseDown);
-                div.removeEventListener('mouseup', onMouseUp);
-                container.removeEventListener('mousemove', onMouseMove)
-                container.removeEventListener('onmouseleave', onMouseUp);
-            }
-        })
-
-},[])
- if(ProjectData) return (<div>Loading</div>)
+//  if(!projectData || projectData.length === 0) return (<div>Loading</div>)
   return (
-    <div ref={myContainer} className='background'>
-        <div ref={myRef} className='editing-tool-box' style={viewEditTool? {display: "block"} : {display: "none"}}>
+    <div className='background'>
+        {/* <div ref={myRef} className='editing-tool-box' style={viewEditTool? {display: "block"} : {display: "none"}}>
             <div ref= {dragBar} className='dragable-bar'>
                 <i className="bi bi-circle-fill edit-close" onClick={() => setViewEditTool(!viewEditTool)}></i>
             </div>
             <div className='edit-content'>
 
             </div>
-        </div>
-        <ProjectMain mainTitles={{projectData ,setProjectData}}/>
+        </div> */}
+        
+        <ul  className={viewEditTool? "edit-menu" : "make-invisible"} onClick={()=> {setViewInsertMenu(!viewInsertmenu)}}>
+            <li className='menu-item'>
+            Insert
+
+                <ul className={viewInsertmenu? 'edit-insert-menu': 'make-invisible'}>
+                    <li>
+                        InsertE
+                    </li>
+                    <li>
+                        InsertI
+                    </li>
+                    <li>
+                       InsertD
+                    </li>
+                </ul>
+
+            </li>
+            <li className='menu-item'>Remove</li>
+            <li className='menu-item'>Save</li>
+        </ul>
+
+        <ProjectMain project={projectData} setProjectData={setProjectData} prjIdx = {0}/>
+        
+        {projectData[0]?.elements.map((ele, ind)=> {
+            switch(ele.type) {
+                case "Text":
+                    return(
+                         <PExplanation key={ele.id}
+                        project={projectData} 
+                        setProjectData={setProjectData} 
+                        elementIdx ={ind}
+                        prjInx = {0}
+                        inFocusElement = {inFocusElement}
+                        setInFocusElement = {setInFocusElement}
+                        />
+                    )
+                    break;
+                case "Image":
+                    return (
+                        <PImage key={ele.id}
+                        project={projectData} 
+                        setProjectData={setProjectData} 
+                        elementIdx ={ind}
+                        prjInx = {0}
+                        inFocusElement = {inFocusElement}
+                        setInFocusElement = {setInFocusElement}
+                        />
+                    )
+                    break;
+                case "Difference":
+                    return(
+                        <PDifference key={ele.id} 
+                        project={projectData} 
+                        setProjectData={setProjectData} 
+                        elementIdx ={ind}
+                        prjInx = {0}
+                        inFocusElement = {inFocusElement}
+                        setInFocusElement = {setInFocusElement}
+                        />
+                    )
+                    break;
+            }
+        })}
     </div>
     
   )
