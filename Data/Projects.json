@@ -1,0 +1,35 @@
+[
+ {
+   "id": 1,
+   "mainPage" : {
+    "projectName": "Dot Net Project",
+    "projectDescription": "a fully fleged dot net project",
+    "src": "https://www.geckoboard.com/uploads/Digital-dashboard-example.png"
+    },
+    "elements" : [
+        {
+            "id": 1,
+            "heading": "Introduction",
+            "type": "Text",
+            "content" : ["this is staement 1","this is statement 2"]
+            
+        },
+        {
+            "id": 2,
+            "heading": "Image Heading",
+            "type": "Image",
+            "src" : "https://www.geckoboard.com/uploads/Digital-dashboard-example.png"
+        },
+        {
+            "id": 3,
+            "head1": "Head 1",
+            "head2": "Head 2",
+            "type": "Difference",
+            "contentLeft" : ["this is staement 1","this is statement 2"],
+            "contentRight" : ["this is staement 1","this is statement 2"]
+        }
+    ]
+    
+}
+
+]
