@@ -17,11 +17,28 @@ const PExplanation = ({project,
     const descRef = useRef();
 
     function handleTempSave() {
-        const proj = {...project}
-        
-        proj[prjInx].elements[elementIdx].heading = headingRef.current.innerText;
-        proj[prjInx].elements[elementIdx].content = descRef.current.innerText;
+        // Clone array if `project` is an array, otherwise clone object
+        const proj = Array.isArray(project) ? [...project] : { ...project };
 
+        // Clone the specific project
+        const projectCopy = { ...proj[prjInx] };
+
+        // Clone the elements array
+        const elementsCopy = [...projectCopy.elements];
+
+        // Clone the target element
+        const elementCopy = { ...elementsCopy[elementIdx] };
+
+        // Update properties
+        elementCopy.heading = headingRef.current.innerText;
+        elementCopy.content = descRef.current.innerText;
+
+        // Rebuild everything immutably
+        elementsCopy[elementIdx] = elementCopy;
+        projectCopy.elements = elementsCopy;
+        proj[prjInx] = projectCopy;
+
+        // Update state
         setProjectData(proj);
     }
 
@@ -33,6 +50,7 @@ const PExplanation = ({project,
           onBlur={()=> {handleTempSave()}}
         className={viewEditTool && elementIdx === inFocusElement ? 'container  heighlight' : "container"}>
             <p
+            style={{ whiteSpace: "pre-wrap" }}  // preserves \n and spaces visually
             ref={headingRef}
             contentEditable = {viewEditTool}
             suppressContentEditableWarning={viewEditTool}
@@ -40,6 +58,7 @@ const PExplanation = ({project,
                 {project[prjInx]?.elements[elementIdx]?.heading}
             </p>
             <p 
+            style={{ whiteSpace: "pre-wrap" }}  // preserves \n and spaces visually
             ref={descRef}
             contentEditable = {viewEditTool}
             suppressContentEditableWarning={viewEditTool}

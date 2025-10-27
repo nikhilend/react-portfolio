@@ -1,7 +1,7 @@
 import './CSS/Utility.css'
 import './CSS/PImage.css'
 import {EditContext} from '../Utils/UserContext'
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext} from 'react';
 
 const PImage = ({project, 
     setProjectData, 
@@ -17,20 +17,27 @@ const PImage = ({project,
 
 
   function handleLoad() {
-      let projectCopy = {...project}
+      const proj = [...project]; // shallow copy array
+      const current = { ...proj[prjIdx] }; // copy object
+      let newElements = [...current.elements]; // copy the elements array
+      let newEle = {...newElements[elementIdx]}
 
-      projectCopy[prjInx].elements[elementIdx].src = src
+      newEle.src = src
 
-      setProjectData(projectCopy)
+      newElements[elementIdx] = newEle
+      current.elements = newElements
+      proj[prjIdx] = current
+
+      setProjectData(proj)
   }
 
   return (
     <div className='background-project'>
         <div 
         onClick={()=>{setInFocusElement(elementIdx)}}
-        className={viewEditTool && elementIdx === inFocusElement ? 'container image-container  heighlight' : "container image-container"}>
+        className={viewEditTool && elementIdx === inFocusElement ? 'container  heighlight' : "container"}>
 
-            <div className='image-card'>
+            <div className='project-image-card'>
                 {viewEditTool?<div> <input 
                 onLoad={e => {e.target.value = src}}
                 onChange={e => {src = e.target.value}}>

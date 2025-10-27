@@ -3,7 +3,7 @@ import "./CSS/ProjectMain.css"
 import { useContext, useEffect, useRef, useState } from 'react';
 import {EditContext} from '../Utils/UserContext'
 
-const ProjectMain = ({project, setProjectData, prjIdx}) => {
+const ProjectMain = ({project, setProjectData, prjIdx, inFoucusElement, setInFocusElement}) => {
 
     const headingRef = useRef();
     const descRef = useRef();
@@ -20,11 +20,16 @@ const ProjectMain = ({project, setProjectData, prjIdx}) => {
     const [viewEditTool, setViewEditTool] = useContext(EditContext)
 
     function handleTempSave() {
-        const proj = {...project}
+        const proj = [...project]; // shallow copy array
+        const current = { ...proj[prjIdx] }; // copy object
+        const mainPage = { ...current.mainPage }; // copy nested object
 
-        proj[prjIdx].mainPage.projectName = headingRef.current.innerText;
-        proj[prjIdx].mainPage.projectDescription = descRef.current.innerText;
-        proj[prjIdx].mainPage.src = mainImageSrc;
+        mainPage.projectName = headingRef.current.innerText;
+        mainPage.projectDescription = descRef.current.innerText;
+        mainPage.src = mainImageSrc;
+
+        current.mainPage = mainPage;
+        proj[prjIdx] = current;
 
         setProjectData(proj);
     }
@@ -49,14 +54,18 @@ const ProjectMain = ({project, setProjectData, prjIdx}) => {
 
                     <div
                      className='project-content'>
-                        <div className='prject-titles appear'>
+                        <div 
+                        onClick={() => {setInFocusElement(999)}}
+                        className='project-titles appear'>
                             <p 
+                            style={{ whiteSpace: "pre-wrap" }}  // preserves \n and spaces visually
                             contentEditable = {viewEditTool}
                             suppressContentEditableWarning={viewEditTool}
                             ref={headingRef}
                             className='project-content-heading'>{projectHeading}</p>
 
                             <p
+                            style={{ whiteSpace: "pre-wrap" }}  // preserves \n and spaces visually
                             contentEditable = {viewEditTool}
                             suppressContentEditableWarning={viewEditTool} 
                             ref={descRef}

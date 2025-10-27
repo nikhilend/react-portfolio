@@ -11,7 +11,7 @@
             "id": 1,
             "heading": "Introduction",
             "type": "Text",
-            "content" : ["this is staement 1","this is statement 2"]
+            "content" : "this is staement 1"
             
         },
         {
