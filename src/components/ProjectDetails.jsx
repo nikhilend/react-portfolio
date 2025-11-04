@@ -24,12 +24,12 @@ const [inFocusElement, setInFocusElement]  = useState(-1);
 
 
 useEffect(()=> {
+
     // Logic for fetching the data
-    if(!isFetched) {
-            fetch("../../Data/Projects.json").then(res => res.json()).then(data => setProjectData(data)).catch(
-            err => console.error("Error loading projects:", err)
-        );
-    }
+    fetch("../../Data/Projects.json").then(res => res.json()).then(data => setProjectData(data)).catch(
+    err => console.error("Error loading projects:", err)
+    );  
+
 },[])
 
 const cords = useRef({
