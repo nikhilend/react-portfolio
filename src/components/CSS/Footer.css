@@ -1,0 +1,52 @@
+.footer {
+  background-color: #0D1B2A;
+  color: #E0E1DD;
+  text-align: center;
+  padding: 40px 20px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-content {
+  margin-bottom: 20px;
+}
+
+.footer-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #E0E1DD;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-icon {
+  color: #E0E1DD;
+  font-size: 28px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+}
+
+.social-icon.linkedin:hover {
+  color: #0077b5;
+}
+
+.social-icon.github:hover {
+  color: #ffffff;
+}
+
+.social-icon.instagram:hover {
+  color: #e1306c;
+}
+
+.footer-copy {
+  font-size: 14px;
+  color: #9aa3b1;
+  margin-top: 10px;
+}

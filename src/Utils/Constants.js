@@ -1,0 +1,1 @@
+export const MONGO_FETCH_ROUTE = "https://portfolio-backend-zeta-topaz.vercel.app"

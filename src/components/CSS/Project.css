@@ -29,7 +29,7 @@
 .project-carousal{
     display: flex;
     width: 70rem;
-    height: 40rem;
+    height: 31rem;
     margin: 5rem 0;
     background-color: var(--grey);
     transition: all 1s;

@@ -1,11 +1,12 @@
 import './CSS/Utility.css'
 import './CSS/PDifference.css'
 import {EditContext} from '../Utils/UserContext'
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setProjectData } from '../Utils/projectsSlice'
 
 
 const PDifference = ({project, 
-    setProjectData, 
     elementIdx, 
     prjInx,
     inFocusElement,
@@ -16,6 +17,7 @@ const PDifference = ({project,
   const head2Ref = useRef()
   const leftRef = useRef()
   const rightRef = useRef()
+  const dispatch = useDispatch();
 
   const [viewEditTool, setViewEditTool] = useContext(EditContext)
 
@@ -24,10 +26,10 @@ const PDifference = ({project,
         const proj = Array.isArray(project) ? [...project] : { ...project };
 
         // Copy the specific project
-        const projectCopy = { ...proj[prjInx] };
+        const current = { ...proj[prjInx] };
 
         // Copy the elements array
-        const elementsCopy = [...projectCopy.elements];
+        const elementsCopy = [...current.elements];
 
         // Copy the target element
         const elementCopy = { ...elementsCopy[elementIdx] };
@@ -40,41 +42,46 @@ const PDifference = ({project,
 
         // Put it all back together immutably
         elementsCopy[elementIdx] = elementCopy;
-        projectCopy.elements = elementsCopy;
-        proj[prjInx] = projectCopy;
+        current.elements = elementsCopy;
+        proj[prjInx] = current;
 
-        // Finally update React state
-        setProjectData(proj);
+        // Update state
+        dispatch(setProjectData({"updateID":current.id, "current" :current}));
     }
 
     function handleInsertRemove(action, dir) {
+        debugger
         // Clone array if project is an array, else clone object
-        const proj = Array.isArray(project) ? [...project] : { ...project };
+        let proj = Array.isArray(project) ? [...project] : { ...project };
 
         // Copy the specific project
-        const projectCopy = { ...proj[prjInx] };
+        let projectCopy = { ...proj[prjInx] };
 
         // Copy the elements array
-        const elementsCopy = [...projectCopy.elements];
+        let elementsCopy = [...projectCopy.elements];
 
         // Copy the target element
-        const elementCopy = { ...elementsCopy[elementIdx] };
+        let elementCopy = { ...elementsCopy[elementIdx] };
 
         switch(action) {
             case "I":
                 if(dir==="R"){
-                     elementCopy.contentRight.push("this is new statement")
+                    //  elementCopy.contentRight.push()
+                     elementCopy.contentRight = [...elementCopy.contentRight, "this is new statement"]
                 }
                 if(dir==="L"){
-                     elementCopy.contentLeft.push("this is new statement")
+                    //  elementCopy.contentLeft.push("this is new statement")
+                     elementCopy.contentLeft = [...elementCopy.contentLeft, "this is new statement"]
                 }
                 break;
             case "R":
                 if(dir==="R"){
-                     elementCopy.contentRight.pop()
+                    //  elementCopy.contentRight.pop()
+                     elementCopy.contentRight = elementCopy.contentRight.filter((item, i) => i != elementCopy.contentRight.length - 1)
                 }
                 if(dir==="L"){
-                     elementCopy.contentLeft.pop()
+                    //  elementCopy.contentLeft.pop()
+                     elementCopy.contentLeft = elementCopy.contentLeft.filter((item, i) => i != elementCopy.contentLeft.length - 1)
                 }
                 break;
         }
@@ -83,14 +90,13 @@ const PDifference = ({project,
         projectCopy.elements = elementsCopy;
         proj[prjInx] = projectCopy;
 
-        // Finally update React state
-        setProjectData(proj);
+        // Update state
+        dispatch(setProjectData({"updateID":projectCopy.id, "current" :projectCopy}));
 
     }
 
   return (
     <div className='background-project'>
-        <div className='gap'></div>
         <div onClick={()=>{setInFocusElement(elementIdx)}}
         onBlur={handleTempSave}
         className={viewEditTool && elementIdx === inFocusElement ? 'container difference-container  heighlight' : "container difference-container"}>

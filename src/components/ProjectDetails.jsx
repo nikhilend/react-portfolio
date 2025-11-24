@@ -7,47 +7,64 @@ import ProjectMain from './ProjectMain';
 import PExplanation from './PExplanation';
 import PImage from './PImage';
 import PDifference from './PDifference';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProjectData, addProjects, addNewProject, removeProject } from '../Utils/projectsSlice'
+import {MONGO_FETCH_ROUTE} from '../Utils/Constants'
+
 
 const ProjectDetails = () => {
-let projectID = 0
-const [isFetched, setIsFetched] = useState(false)
-
+const {id} = useParams()
+const projectData = useSelector(store => store.projects.projects)
+const dispatch = useDispatch();
+const navigate = useNavigate();
 // const myRef = useRef(null);
 // const dragBar = useRef(null);
 // const myContainer = useRef(null);
 // const isClicked = useRef(false);
 
 const [viewEditTool, setViewEditTool] = useContext(EditContext);
-const [projectData, setProjectData] = useState([]);
+// const [projectData, setProjectData] = useState([]);
 const [viewInsertmenu, setViewInsertMenu] = useState(false);
 const [inFocusElement, setInFocusElement]  = useState(-1);
-
+const [makeSavedVisible, setSavedVisible] = useState(false);
 
 useEffect(()=> {
 
     // Logic for fetching the data
-    fetch("../../Data/Projects.json").then(res => res.json()).then(data => setProjectData(data)).catch(
-    err => console.error("Error loading projects:", err)
-    );  
-
+    getProjectData()
 },[])
 
-const cords = useRef({
-    x: 0,
-    y: 0,
-    lastX: 0,
-    lastY: 0
-})
+async function getProjectData() {
+    let data
+    if(projectData.length > 0) 
+    {
+        data = projectData
+    } 
+    else 
+    {
+        const rawData = await fetch(MONGO_FETCH_ROUTE +"/projects").then(data => data.json());
+        data = rawData["projects"]
+        dispatch(addProjects(data))
+    }
+}
+
+// const cords = useRef({
+//     x: 0,
+//     y: 0,
+//     lastX: 0,
+//     lastY: 0
+// })
 
 function handleInsert(type) {
-
+    debugger
     let obj
-    const id = projectData[projectID].elements.length + 1;
+    const projectID = projectData[id].elements.length + 1;
 
     switch(type) {
         case "E":
             obj = {
-            id: id,
+            id: projectID,
             heading: "Heading",
             type: "Text",
             content : "this is staement 1"
@@ -56,14 +73,14 @@ function handleInsert(type) {
             break;
         case "I":
             obj = {
-            id: id,
+            id: projectID,
             type: "Image",
             src: "https://www.geckoboard.com/uploads/Digital-dashboard-example.png"
         }
             break;
         case "D":
             obj = {
-            id: id,
+            id: projectID,
             head1: "Head 1",
             head2: "Head 2",
             type: "Difference",
@@ -76,7 +93,7 @@ function handleInsert(type) {
 
     // Clone array if `project` is an array, otherwise clone object
     const proj = Array.isArray(projectData) ? [...projectData] : { ...projectData };
-    let currentProject = { ...proj[projectID] }; // copy the object
+    let currentProject = { ...proj[id] }; // copy the object
     let newElements = [...currentProject.elements]; // copy the elements array
 
     // insert the new object immutably
@@ -92,17 +109,17 @@ function handleInsert(type) {
     currentProject.elements = newElements;
 
     // put updated project back into list
-    proj[projectID] = currentProject;
+    proj[id] = currentProject;
 
     // finally set state
-    setProjectData(proj);
+    dispatch(setProjectData({"updateID": currentProject.id, "current": currentProject}));
     
 
 }
 
 function handleRemove() {
     const proj = Array.isArray(projectData) ? [...projectData] : { ...projectData };
-    let currentProject = { ...proj[projectID] }; // copy the object
+    let currentProject = { ...proj[id] }; // copy the object
     let newElements = [...currentProject.elements]; // copy the elements array
 
      if(inFocusElement >= 0 && inFocusElement < newElements.length)
@@ -114,20 +131,105 @@ function handleRemove() {
     currentProject.elements = newElements;
 
     // put updated project back into list
-    proj[projectID] = currentProject;
+    proj[id] = currentProject;
 
     // finally set state
-    setProjectData(proj);
+    dispatch(setProjectData({"updateID": currentProject.id, "current": currentProject}));
 }
 
-function handleSave() {
+async function handleSave() {
+    console.log(JSON.stringify(projectData[id]))
+      try {
+      const res = await fetch(MONGO_FETCH_ROUTE +"/project/" + projectData[id]?.id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(projectData[id]),
+      });
 
-    const fs = require('fs');
-    // Convert JS object → JSON string
-    const jsonData = JSON.stringify(projectData, null, 2);
+      const result = await res.json();
+      console.log("Server response:", result);
+      if(result.message === "Project updated") {
+        setSavedVisible(true);
+        setTimeout(() => {
+            setSavedVisible(false)
+        },2000)
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+}
 
-    // Save to a file
-    fs.writeFileSync('../../Data/Projects.json', jsonData, 'utf-8');
+async function handleNewProject() {
+    const newProjID = projectData.length+1;
+    const newProject = {
+   "id": newProjID,
+   "code": "",
+   "live" : "",
+   "mainPage" : {
+    "projectName": "Dot Net Project",
+    "projectDescription": "a fully fleged dot net project",
+    "src": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F8billionvoices.com%2Fwp-content%2Fuploads%2F2023%2F03%2Fsearch-image.jpg&f=1&nofb=1&ipt=6b49c2cd4579d299b17152e5e75821f19f93c965bce24642dae92d65008ba1cd"
+    },
+    "elements" : [
+        {
+            "id": 1,
+            "heading": "Introduction",
+            "type": "Text",
+            "content" : "this is staement 1"
+            
+        },
+        {
+            "id": 2,
+            "heading": "Image Heading",
+            "type": "Image",
+            "src" : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F8billionvoices.com%2Fwp-content%2Fuploads%2F2023%2F03%2Fsearch-image.jpg&f=1&nofb=1&ipt=6b49c2cd4579d299b17152e5e75821f19f93c965bce24642dae92d65008ba1cd"
+        },
+        {
+            "id": 3,
+            "head1": "Head 1",
+            "head2": "Head 2",
+            "type": "Difference",
+            "contentLeft" : ["this is staement 1","this is statement 2"],
+            "contentRight" : ["this is staement 1","this is statement 2"]
+        }
+    ]
+    
+    }
+    
+    try {
+      const res = await fetch(MONGO_FETCH_ROUTE +"/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newProject),
+      });
+
+      const result = await res.json();
+      console.log("Server response:", result);
+      if(result.success) {
+        dispatch(addNewProject(newProject))
+        navigate("/project/" + (newProjID - 1))
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+}
+
+async function handleRemoveProject() {
+    try {
+      const res = await fetch(MONGO_FETCH_ROUTE +"/project/"+ projectData[id]?.id, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      });
+
+      const result = await res.json();
+      console.log("Server response:", result);
+      if(result.success) {
+        dispatch(removeProject(projectData[id].id))
+        navigate("/")
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
 }
 
 // useEffect(() => {
@@ -188,6 +290,7 @@ function handleSave() {
         </div> */}
         
         <ul  className={viewEditTool? "edit-menu" : "make-invisible"}>
+            <li className='menu-item' >{id}</li>
             <li className='menu-item' onClick={()=> {setViewInsertMenu(!viewInsertmenu)}}>
             Insert
 
@@ -205,20 +308,25 @@ function handleSave() {
 
             </li>
             <li className='menu-item' onClick={handleRemove}>Remove</li>
-            <li className='menu-item' onClick={handleSave}>Save</li>
+            <li className='menu-item' onClick={handleSave}>Save
+               <div className={makeSavedVisible? "menu-item-saved-m" : "make-invisible"}>
+                <p>saved</p>
+               </div> 
+            </li>
+            <li className='menu-item' onClick={handleNewProject}>+ Project</li>
+            <li className='menu-item' onClick={handleRemoveProject}>- Project</li>
         </ul>
 
-        <ProjectMain project={projectData} setProjectData={setProjectData} prjIdx = {0} inFocusElement = {inFocusElement} setInFocusElement = {setInFocusElement} />
+        <ProjectMain project={projectData} prjIdx = {id} inFocusElement = {inFocusElement} setInFocusElement = {setInFocusElement} />
         
-        {projectData[0]?.elements.map((ele, ind)=> {
+        {projectData[id]?.elements.map((ele, ind)=> {
             switch(ele.type) {
                 case "Text":
                     return(
                          <PExplanation key={ele.id}
-                        project={projectData} 
-                        setProjectData={setProjectData} 
+                        project={projectData}
                         elementIdx ={ind}
-                        prjInx = {0}
+                        prjInx = {id}
                         inFocusElement = {inFocusElement}
                         setInFocusElement = {setInFocusElement}
                         />
@@ -228,9 +336,8 @@ function handleSave() {
                     return (
                         <PImage key={ele.id}
                         project={projectData} 
-                        setProjectData={setProjectData} 
                         elementIdx ={ind}
-                        prjInx = {0}
+                        prjInx = {id}
                         inFocusElement = {inFocusElement}
                         setInFocusElement = {setInFocusElement}
                         />
@@ -240,9 +347,8 @@ function handleSave() {
                     return(
                         <PDifference key={ele.id} 
                         project={projectData} 
-                        setProjectData={setProjectData} 
                         elementIdx ={ind}
-                        prjInx = {0}
+                        prjInx = {id}
                         inFocusElement = {inFocusElement}
                         setInFocusElement = {setInFocusElement}
                         />

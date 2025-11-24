@@ -2,9 +2,10 @@ import './CSS/Utility.css'
 import './CSS/PImage.css'
 import {EditContext} from '../Utils/UserContext'
 import { useContext} from 'react';
+import { useDispatch } from 'react-redux';
+import { setProjectData } from '../Utils/projectsSlice'
 
 const PImage = ({project, 
-    setProjectData, 
     elementIdx, 
     prjInx,
     inFocusElement,
@@ -12,13 +13,14 @@ const PImage = ({project,
 }) => {
 
   const [viewEditTool, setViewEditTool] = useContext(EditContext);
+  const dispatch = useDispatch();
 
   let src = project[prjInx]?.elements[elementIdx]?.src
 
 
   function handleLoad() {
       const proj = [...project]; // shallow copy array
-      const current = { ...proj[prjIdx] }; // copy object
+      const current = { ...proj[prjInx] }; // copy object
       let newElements = [...current.elements]; // copy the elements array
       let newEle = {...newElements[elementIdx]}
 
@@ -26,9 +28,10 @@ const PImage = ({project,
 
       newElements[elementIdx] = newEle
       current.elements = newElements
-      proj[prjIdx] = current
+      proj[prjInx] = current
 
-      setProjectData(proj)
+      // Update states
+      dispatch(setProjectData({"updateID":current.id, "current" :current}));
   }
 
   return (

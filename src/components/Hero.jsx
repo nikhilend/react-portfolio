@@ -2,6 +2,25 @@ import './CSS/Utility.css'
 import './CSS/Hero.css'
 
 const Hero = () => {
+  function scroll(to) {
+    switch(to) {
+      case "About": 
+        document.getElementById("#About")?.scrollIntoView({
+        behavior: 'smooth'
+        })
+      break;
+      case "Project": 
+        document.getElementById("#Project")?.scrollIntoView({
+        behavior: 'smooth'
+        })
+      break;
+      case "Contact":
+        document.getElementById("#Contact")?.scrollIntoView({
+        behavior: 'smooth'
+        })
+      break;
+    } 
+  }
   return (
     <div className='container'>
         <div className='main-page-hero'>
@@ -14,7 +33,7 @@ const Hero = () => {
           <h2>I AM A FULLSTACK <span>DEVELOPER</span></h2>
           <p>I am fullstack developer from india with 3 years of experience working in fullstack projects.</p>
             <ul>
-              <li className='btn btn-primary'>
+              <li className='btn btn-primary' onClick={() => scroll("Contact")}>
                 contact me
               </li>
               <li className='btn btn-secondary'>

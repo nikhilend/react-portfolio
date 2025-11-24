@@ -1,10 +1,11 @@
 import React, { useContext, useRef } from 'react'
 import './CSS/Utility.css'
+import './CSS/PExplanation.css'
 import {EditContext} from '../Utils/UserContext'
-
+import { useDispatch } from 'react-redux';
+import { setProjectData } from '../Utils/projectsSlice'
 
 const PExplanation = ({project, 
-    setProjectData, 
     elementIdx, 
     prjInx,
     inFocusElement,
@@ -15,6 +16,7 @@ const PExplanation = ({project,
 
     const headingRef = useRef();
     const descRef = useRef();
+    const dispatch = useDispatch()
 
     function handleTempSave() {
         // Clone array if `project` is an array, otherwise clone object
@@ -39,12 +41,12 @@ const PExplanation = ({project,
         proj[prjInx] = projectCopy;
 
         // Update state
-        setProjectData(proj);
+        dispatch(setProjectData({"updateID":projectCopy.id, "current" :projectCopy}));
     }
 
   return (
     <div className='background-project'>
-      <div className='gap'></div>
+        {elementIdx === 0 && <div className='gap'></div>}
           <div 
           onClick={()=>{setInFocusElement(elementIdx)}}
           onBlur={()=> {handleTempSave()}}

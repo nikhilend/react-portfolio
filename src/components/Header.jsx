@@ -38,7 +38,6 @@ const Header = () => {
 
               <div>
                 <ul className='navbar-left'>
-                  <li onClick={() => setViewEditTool(!viewEditTool)}>EDIT</li>
                   <li onClick={() => scroll("About")}>ABOUT</li>
                   <li onClick={() => scroll("Project")}>PROJECTS</li>
                   <li onClick={() => scroll("Contact")}>CONTACT</li> 

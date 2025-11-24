@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import {createBrowserRouter, RouterProvider}  from "react-router-dom"
 import MainContent from "./components/MainContent.jsx"
+import ContactSent from './components/ContactSent.jsx'
 
 const ProjectDetails = lazy(() => import('./components/ProjectDetails.jsx'))
 
@@ -17,8 +18,12 @@ const reactRoute = createBrowserRouter([
       element: <MainContent/>
     },
     {
-      path: "/project",
+      path: "/project/:id",
       element: <Suspense><ProjectDetails/></Suspense>
+    },
+    {
+      path: "/contact",
+      element: <ContactSent/>
     }
   ]
 }

@@ -1,0 +1,10 @@
+.project-content-description {
+    width: 100%;
+}
+
+@media ( max-width: 500px),(max-width: 801px) {
+    .project-content-heading,.project-content-description {
+        width: 100%;
+        margin-left: 4rem;
+    }
+}
