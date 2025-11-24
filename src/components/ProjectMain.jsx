@@ -58,7 +58,7 @@ const ProjectMain = ({project, prjIdx, setInFocusElement}) => {
                     <ul className='project-menu appear'>
                         {liveLink&&<li><a href={liveLink} target="_blank">LIVE</a></li>}
                         {codeLink&&<li><a href={codeLink} target="_blank">CODE</a></li>}
-                        <li onClick={() => {setViewEditTool(!viewEditTool); console.log(viewEditTool)}}>EDIT</li>
+                        {/* <li onClick={() => {setViewEditTool(!viewEditTool); console.log(viewEditTool)}}>EDIT</li> */}
                         <li><Link to="/">HOME</Link></li>
                     </ul>
 

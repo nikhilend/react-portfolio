@@ -138,7 +138,6 @@ function handleRemove() {
 }
 
 async function handleSave() {
-    console.log(JSON.stringify(projectData[id]))
       try {
       const res = await fetch(MONGO_FETCH_ROUTE +"/project/" + projectData[id]?.id, {
         method: "PUT",
@@ -147,7 +146,6 @@ async function handleSave() {
       });
 
       const result = await res.json();
-      console.log("Server response:", result);
       if(result.message === "Project updated") {
         setSavedVisible(true);
         setTimeout(() => {
@@ -204,7 +202,6 @@ async function handleNewProject() {
       });
 
       const result = await res.json();
-      console.log("Server response:", result);
       if(result.success) {
         dispatch(addNewProject(newProject))
         navigate("/project/" + (newProjID - 1))
@@ -222,7 +219,6 @@ async function handleRemoveProject() {
       });
 
       const result = await res.json();
-      console.log("Server response:", result);
       if(result.success) {
         dispatch(removeProject(projectData[id].id))
         navigate("/")
