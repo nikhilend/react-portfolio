@@ -1,15 +1,20 @@
 import './CSS/Utility.css'
 import './CSS/About.css'
 import { useEffect } from 'react'
+import myImage from '../images/me.jpg'
+import eclipseIcon from "../images/eclipse-icon-svgrepo-com.svg";
+import gitIcon from "../images/git-svgrepo-com.svg";
+import jiraIcon from "../images/jira-svgrepo-com.svg";
+import postmanIcon from "../images/postman-icon-svgrepo-com.svg";
+import vscodeIcon from "../images/visual-studio-code-svgrepo-com.svg";
+import visualStudioIcon from "../images/visual-studio-svgrepo-com.svg";
 
 const About = () => {
 
   useEffect(()=>{
-    console.log(document.querySelectorAll(".animate"));
     const obserser = new IntersectionObserver((entries) => {
         entries.forEach((entry)=> {
             if(entry.isIntersecting) {
-                console.log(entry.target)
             }
         })
 
@@ -25,7 +30,7 @@ const About = () => {
             <div className='about-grid'>
                 <h1 className='about-heading grid-1'>About Me</h1>
                 <div className='image-card grid-2'>
-                        <img src='src\images\me.jpg'></img>
+                        <img src={myImage}></img>
                 </div>
                 <div className='skill-card grid-3'>
                     <p>I'm a passionate and detail-oriented software developer with 3 years of hands-on experience in building scalable, user-centric applications. My work spans across the full development lifecycle—from planning and design to implementation, testing, and maintenance.</p>
@@ -54,23 +59,23 @@ const About = () => {
     <div className='tools-container'>
                 <p className="tools-heading">Tools I use</p>
                     <div className='about-tools'>
-                        <div  className='about-tool'>
-                            <img src="src\images\eclipse-icon-svgrepo-com.svg"></img>
+                        <div className='about-tool'>
+  <img src={eclipseIcon} alt="Eclipse" />
                         </div>
-                        <div  className='about-tool'>
-                            <img src="src\images\git-svgrepo-com.svg"></img>
+                        <div className='about-tool'>
+                        <img src={gitIcon} alt="Git" />
                         </div>
-                        <div  className='about-tool'>
-                            <img src="src\images\jira-svgrepo-com.svg"></img>
+                        <div className='about-tool'>
+                        <img src={jiraIcon} alt="Jira" />
                         </div>
-                        <div  className='about-tool'>
-                            <img src="src\images\postman-icon-svgrepo-com.svg"></img>
+                        <div className='about-tool'>
+                        <img src={postmanIcon} alt="Postman" />
                         </div>
-                        <div  className='about-tool'>
-                            <img src='src/images/visual-studio-code-svgrepo-com.svg'></img>
+                        <div className='about-tool'>
+                        <img src={vscodeIcon} alt="VS Code" />
                         </div>
-                        <div  className='about-tool'>
-                            <img src='src\images\visual-studio-svgrepo-com.svg'></img>
+                        <div className='about-tool'>
+                        <img src={visualStudioIcon} alt="Visual Studio" />
                         </div>
                     </div>
             </div>
