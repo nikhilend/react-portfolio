@@ -98,6 +98,10 @@
         animation: none;
     }
 
+    .project-main-description,.btn-project-dark {
+        margin-left: 5rem;
+    }
+
     .project-content{
         display: flex;
         flex-direction: column;
